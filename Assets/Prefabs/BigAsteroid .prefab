@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 50897897789869785}
   - component: {fileID: 933183544095420421}
   - component: {fileID: -8056866719509183030}
+  - component: {fileID: 7536706204204158373}
   m_Layer: 0
   m_Name: 'BigAsteroid '
   m_TagString: Asteroid
@@ -230,3 +231,15 @@ MonoBehaviour:
   _explosion: {fileID: 1280240331523082, guid: 45ae5851ef2832044bba82850372d67b, type: 3}
   _health: 2
   _unitType: 1
+--- !u!114 &7536706204204158373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50897897789869784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b38745ae4fe53488dd82b24396b91f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

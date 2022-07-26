@@ -16,17 +16,18 @@ public abstract class DamageDealer : MonoBehaviour, IDamageDealer
     {
         
         var damagableComponent = other.GetComponent<IDamagable>();
-        
-        var unitType = other.GetComponent<IUnit>().UnitType;
-        var shooterSpawn = other.GetComponent<ShooterSpawnType>();
-        var tShooterSpawn = GetComponent<ShooterSpawnType>();
-        if (UnitType != unitType)
+        if (other.GetComponent<IUnit>()!=null)
+        {
+            var unitType = other.GetComponent<IUnit>().UnitType;
+            if (UnitType != unitType)
             {
                 if (damagableComponent != null)
                 {
                     DealDamage(damagableComponent);
                 }
             }
+        }
+       
         
     }
 }

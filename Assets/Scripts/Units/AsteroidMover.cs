@@ -8,7 +8,6 @@ public class AsteroidMover : MonoBehaviour
     
     private void Start()
     {
-        this.transform.Rotate(0,0,Random.Range(0,360) );
         _speedCash = _speed;
     }
 

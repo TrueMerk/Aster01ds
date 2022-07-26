@@ -1,3 +1,4 @@
+using DefaultNamespace;
 using UnityEngine;
 
 public class UFOMover : MonoBehaviour
@@ -6,7 +7,11 @@ public class UFOMover : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate((float) (_speed*0.002),0 ,0);
+        if (PauseMenu.gameIsPaused == false)
+        {
+            transform.Translate((float) (_speed*0.002),0 ,0);
+        }
+       
     }
     
 }

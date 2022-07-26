@@ -9,17 +9,23 @@ public class UFOShooter : MonoBehaviour
     [SerializeField] private BulletPool _bullet;
     [SerializeField] public Transform _shotDir;
     [SerializeField] private float _shootRate;
+     private PlayerMovement _playerPos;
     
     private float _reload;
 
     private void Start()
     {
         _reload = 2;
-      
+        _playerPos =  GameObject.FindObjectOfType<PlayerMovement>();
     }
 
     private void Update()
     {
+        if (PauseMenu.gameIsPaused == false)
+        {
+            Shoot();
+        }
+        
         if (_reload > 0)
         {
             _reload -= Time.deltaTime;
@@ -31,7 +37,7 @@ public class UFOShooter : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    /*private void OnTriggerStay2D(Collider2D other)
     {
         var unitType = other.GetComponent<IUnit>().UnitType;
         var damagableComponent = other.GetComponent<IDamagable>();
@@ -52,7 +58,7 @@ public class UFOShooter : MonoBehaviour
                 
             }
         }
-    }
+    }*/
 
     private IEnumerator ShootCoroutine(float rate)
     {
@@ -64,4 +70,18 @@ public class UFOShooter : MonoBehaviour
         }
 
     }
+
+    private void Shoot()
+    {
+        var difference = _playerPos.transform.position - _shotDir.position;
+        var rotateZ = Math.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        var target = Quaternion.Euler(0f,0f,((float) (rotateZ) - 100));
+        _shotDir.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime * 100);
+        if (_reload == 0)
+        {
+            _bullet.CreateBullet(_shotDir);
+            _reload = _shootRate;
+        }
+    }
+    
 }

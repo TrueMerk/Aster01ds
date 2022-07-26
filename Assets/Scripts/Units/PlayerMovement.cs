@@ -8,11 +8,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private BulletPool _bullet;
     [SerializeField] private float _shootRate;
     [SerializeField] private Transform _shotDir;
+    [SerializeField] private Transform _relativeTo;
      private float _reload;
     private float _speed = 0;
     
     private void Update()
     {
+        
+        // if (_speed < 0.5)
+        // {
+        //     _relativeTo.rotation = this.transform.rotation;
+        // }
         if (PauseMenu.gameIsPaused)
         {
             _speed = 0;
@@ -41,10 +47,12 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(_input.moveForward))
             {
                Move();
+               _relativeTo.rotation = this.transform.rotation;
             }
             else
             {
                 InertStop();
+                
             }
         }
 
@@ -75,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!(_speed > 0)) return;
         _speed = (float) (_speed - 0.01);
-        transform.Translate(0, (float) 0.02 * _speed, 0);
+        transform.Translate(0, (float) 0.02 * _speed, 0,_relativeTo);
+        
+        
     }
 }

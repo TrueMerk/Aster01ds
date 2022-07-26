@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -32,11 +33,14 @@ public class BigAsteroid : MonoBehaviour, IUnit
         GameData._asteroidCounter--;
     }
 
+    
+
     private void CreateAsteroid(int q)
     {
         var asteroid = _pool.GetFreeElement();
         asteroid.transform.position = transform.position;
-        asteroid.transform.rotation = Quaternion.Euler(transform.rotation.x+q, 0, 0) ;
+        asteroid.transform.rotation = Quaternion.Euler(0, 0, this.transform.rotation.eulerAngles.z+q) ;
+        
     }
 
     
